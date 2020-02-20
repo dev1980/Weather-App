@@ -11,12 +11,14 @@ inputValue.addEventListener('keypress', setQuery);
 function setQuery(evt) {
   if (evt.keyCode == 13) {
     getResults(inputValue.value);
-  }
+}
 }
 
 function getResults(query) {
   fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-    .then(weather => weather.json()).then(displayResults);
+    .then(weather =>{
+      return weather.json();
+    }).then(displayResults);
 }
 
 function displayResults(weather) {
