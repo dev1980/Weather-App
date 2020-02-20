@@ -42,11 +42,44 @@ input[type="submit"] {
     color: white;
     
 }
-.weather {
-    margin-top:10px;
-    padding: 30px;
-    text-align:left;
+.main {
+    flex: 1 1 100%;
+    padding: 25px 25px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
-.right {
-float: right;
+
+.location{
+    color: rgb(8, 75, 153);
+    font-size: 32px;
+}
+
+.location .date {
+    font-size: 16px;
+    font-style: italic;
+}
+
+.current-data .current-temp {
+    color: blueviolet;
+    font-size: 80px;
+    font-weight: 900;
+    margin: 10px 0px;
+}
+
+.current-data .current-weather {
+    color: rgb(226, 125, 43);
+    font-size: 32px;
+    font-weight: 100;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.current-data .hi-low {
+    color: rgb(182, 31, 12);
+    font-size: 32px;
+    font-weight: 100;
+    font-style: italic;
+    margin-bottom: 15px;
 }
