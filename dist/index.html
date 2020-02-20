@@ -10,26 +10,23 @@
             <h1>Weather App</h1>
             <p class='info'>Enter the city to view weather forecast</p>
             <div class="location">
-            <input type="text" class="cityInput" name="location" placeholder="Location">
+            <input type="text" class="cityInput" name="location" placeholder="Location" autocomplete="off">
             <input type="submit" class="button" name="Submit">
             </div>
         </header>
-        <div class="weather">
-            <p class="city"></p>
-            <hr />
-            <p class="temp"></p>
-            <hr />
-            <p class="tempHigh"></p>
-            <hr />
-            <p class="tempLow"></p>
-            <hr />
-            <p class="wind"></p>
-            <hr />
-            <p class="cloud"></p>
+        <div class="main">
+            <section class="location">
+                <div class="city">Kathmandu, NP</div>
+                <div class="date">Thursday 20, Feb 2020</div>
+              </section>
+              <div class="current-data">
+                <div class="current-temp">15<span>°C</span></div>
+                <div class="current-weather">Sunny</div>
+                <div class="hi-low">13°C / 14°C</div>
+              </div>
         </div>
        
     </div>
-    
     <script src="main.js"></script>
 </body>
 </html>
