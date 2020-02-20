@@ -61,14 +61,14 @@ input[type="submit"] {
     font-style: italic;
 }
 
-.current-data .current-temp {
+.current .temp {
     color: blueviolet;
     font-size: 80px;
     font-weight: 900;
     margin: 10px 0px;
 }
 
-.current-data .current-weather {
+.current .weather {
     color: rgb(226, 125, 43);
     font-size: 32px;
     font-weight: 100;
@@ -76,7 +76,7 @@ input[type="submit"] {
     margin-bottom: 15px;
 }
 
-.current-data .hi-low {
+.current .hi-low {
     color: rgb(182, 31, 12);
     font-size: 32px;
     font-weight: 100;
