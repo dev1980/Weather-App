@@ -8,17 +8,21 @@ const api = {
 const inputValue = document.querySelector('.inputValue');
 inputValue.addEventListener('keypress', setQuery);
 
-function setQuery(evt) {
-  if (evt.keyCode == 13) {
+function setQuery(e) {
+  if (e.keyCode === 13) {
     getResults(inputValue.value);
-}
+  }
 }
 
 function getResults(query) {
   fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-    .then(weather =>{
-      return weather.json();
-    }).then(displayResults);
+    .then(weather => weather.json()).then(displayResults);
+}
+
+function clearForm() {
+  setTimeout(() => {
+    inputValue.value = '';
+  }, 3000);
 }
 
 function displayResults(weather) {
@@ -28,20 +32,27 @@ function displayResults(weather) {
   const now = new Date();
   const date = document.querySelector('.location .date');
   date.innerText = newDate(now);
+
   const temp = document.querySelector('.current .temp');
   temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
+
   const weatherNew = document.querySelector('.current .weather');
   weatherNew.innerText = weather.weather[0].main;
+
   const hilow = document.querySelector('.hi-low');
   hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
+
+  clearForm();
 }
 
 function newDate(d) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
   const day = days[d.getDay()];
   const date = d.getDate();
   const month = months[d.getMonth()];
   const year = d.getFullYear();
+
   return `${day} ${date} ${month} ${year}`;
 }
