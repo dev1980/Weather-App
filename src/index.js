@@ -1,5 +1,17 @@
 import './style.css';
 
+const displayGif = () => {
+  fetch('https://api.giphy.com/v1/gifs/random?api_key=UATrdJQ14gXYSQb46ecz4AExyXbN27Qn&tag=&rating=G')
+    .then(response => response.json())
+    .then((response) => {
+      document.querySelector('img').src = response.data.images.original.url;
+    })
+    .catch((error) => {
+      document.querySelector('error').style.display = 'block';
+      document.querySelector('error').innerHTML = error;
+    });
+};
+
 const api = {
   key: '80068fbfc8f92310ac9ea24006b4d8f7',
   base: 'http://api.openweathermap.org/data/2.5/',
@@ -41,9 +53,11 @@ function displayResults(weather) {
 
   const hilow = document.querySelector('.hi-low');
   hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
-
+  displayGif();
   clearForm();
+  
 }
+
 
 function newDate(d) {
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

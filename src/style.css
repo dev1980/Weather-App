@@ -83,3 +83,9 @@ input[type="submit"] {
     font-style: italic;
     margin-bottom: 15px;
 }
+img {
+    width: 250px;
+    height: 200px;
+     background-size: cover;
+     background-position: center;
+    }
