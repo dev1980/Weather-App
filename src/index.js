@@ -6,7 +6,12 @@ const imgGif = document.getElementById('imgGif');
 const weatherResult = document.getElementById('weatherResult');
 const btnCelsius = document.getElementById('btnCelsius');
 const btnFahren = document.getElementById('btnFahren');
+const location = document.getElementById('location');
 const changeTemp = document.getElementById('changeTemp');
+const humidity= document.getElementById('humidity');
+const pressure = document.getElementById('pressure');
+const wind = document.getElementById('wind');
+const weather = document.getElementById('weather');
 
 const displayImage = () => {
   fetch('https://api.giphy.com/v1/gifs/random?api_key=UATrdJQ14gXYSQb46ecz4AExyXbN27Qn&tag=&rating=G')
@@ -23,21 +28,21 @@ const displayImage = () => {
 imgGif.innerHTML = displayImage();
 
 let data;
-btnCity.onclick = function () {
+btnCity.onclick = function() {
   const city = txtCity.value;
   const KEY = '3200d53ac65b442eb5f439f5613ee06c';
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${KEY}`;
   fetch(url).then(response => {
     response.json().then(json => {
       data = json;
-      getResponse(data)
+      getResponse(data);
     });
   });
 };
 
-function kToF(kTemp) {
-  const fTemp = kTemp * (9 / 5) - 459.67;
-  return fTemp;
+function kToC(kTemp) {
+  const cTemp = kTemp - 273.15;
+  return cTemp;
 }
 
 function msToMPH(ms) {
@@ -56,13 +61,19 @@ const getResponse = (data) => {
   } else {
     conditions += data.weather[0].main;
   }
-  const urlString = `<p><strong>Current weather condition for ${data.name}</strong></p>
-    <p><strong>Temperature:</strong> <span id="changeTemp"></span></p>
-    <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
-    <p><strong>Pressure:</strong> ${data.main.pressure}mb</p>
-    <p><strong>Wind:</strong> ${data.wind.deg} degrees at ${Math.round(msToMPH(data.wind.speed))}</p>
-    <p><strong>Weather:</srong>${conditions}</p>`;
-    weatherResult.innerHTML = urlString;
+  location.innerHTML = `Current weather condition for ${data.name}`;
+  changeTemp.innerHTML = `${Math.round(kToC(data.main.temp))}C`;
+  humidity.innerHTML = `${data.main.humidity}%`;
+  pressure.innerHTML = `${data.main.pressure}mb`;
+  wind.innerHTML = `${data.wind.deg} degrees at ${(data.wind.speed)}ms`;
+  weather.innerHTML = `${conditions}`;
+
+  // const urlString = `
+  //   <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+  //   <p><strong>Pressure:</strong> ${data.main.pressure}mb</p>
+  //   <p><strong>Wind:</strong> ${data.wind.deg} degrees at ${Math.round(msToMPH(data.wind.speed))}</p>
+  //   <p><strong>Weather:</srong>${conditions}</p>`;
+  // weatherResult.innerHTML = urlString;
 };
 
 // document.addEventListener('DOMContentLoaded', () =>{
@@ -71,14 +82,11 @@ const getResponse = (data) => {
 
 
 btnCelsius.addEventListener('click', () => {
-  const faren = Math.round(kToF(data.main.temp));
+  const cels = Math.round(kToC(data.main.temp));
+  changeTemp.innerHTML = `${cels}C`;
   // const cels = (faren - 32) * 5 / 9;
   // console.log(cels);
-  changeTemp.innerText = 'Hellow';
-  console.log(data.main.temp);
+  // changeTemp.innerText = 'Hellow';
+  // console.log(data.main.temp);
 });
 
-// btnFahren.addEventListener('click', () => {
-//   const faren = Math.round(kToF(data.main.temp));
-//   tempDisplay = `${faren}°F`;
-// });

@@ -8,10 +8,11 @@ body {
     max-width: 600px;
     text-align: center;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 img {
     width: 400px;
-    height:300px;
+    height:250px;
     border: 2px solid orange;
     border-radius: 12px;
 }
@@ -23,10 +24,10 @@ h1 {
 }
 input {
  border: 0;
- padding: 12px;
+ padding: 8px;
  font-size: 22px;
  border-radius: 12px; 
- margin: 10px 0 10px 0;  
+ margin: 5px 0 5px 0;  
 }
 
 input[type="submit"]{
@@ -34,30 +35,22 @@ input[type="submit"]{
     color: white;
 }
 
-ul {
-    padding: 12px;
-}
-li {
-    padding: 12px;
-    font-size: 22px;
-}
-.sectionResult {
-    text-align: left;
-}
-
 button {
     border: 0;
-    padding: 12px;
+    padding: 8px;
     width: 100px;
-    font-size: 22px;
-    height: 50px;
+    font-size: 18px;
+    height:50px;
     background-color:orangered;
     color: white;
-    margin-bottom: 12px;
+    margin-bottom:5px;
     border-radius: 12px;
 }
 
-.sectionResult {
-    margin-left: 12px;
-    font-size: 18px;
+.results {
+    text-align: left;
+    margin-left: 50px;
+    font-size: 20px;
+    line-height: normal;
 }
+
