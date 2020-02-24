@@ -11,7 +11,7 @@ JavaScript App
 
 [OdinProject](https://www.theodinproject.com/courses/javascript/lessons/weather-app)
 
-![weather-app]()
+![](image/screenshot.png)
 
 ## Built With
 
