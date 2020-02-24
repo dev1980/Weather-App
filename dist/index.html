@@ -7,25 +7,15 @@
 <body>
     <div class="container">
         <header>
-            <img src="#" alt="giphy image">
-            <h1>Weather App</h1>
-            <p class='info'>Enter the city to view weather forecast</p>
-            <div class="location">
-            <input type="text" class="inputValue" name="location" placeholder="Please enter the city..." autocomplete="off">
-            </div>
+            <img src="#" id="imgGif" alt="Weather app picture">
+            <h1>Weather Forecaset</h1>
         </header>
-        <div class="main">
-            <section class="location">
-                <div class="city">Kathmandu, NP</div>
-                <div class="date">Thursday 20, Feb 2020</div>
-              </section>
-              <div class="current">
-                <div class="temp">15<span>°C</span></div>
-                <div class="weather">Sunny</div>
-                <div class="hi-low">13°C / 14°C</div>
-              </div>
-        </div>
-       
+<section class="section">
+    <input type="text" id="txtCity" placeholder="Enter the city for forecast">
+    <input type="submit" id="btnCity">
+</section>
+<div><span id="btnCelsius"><button>C</button></span><span id="btnFahren"><button>F</button></span></div>
+       <section class="sectionResult" id="weatherResult"> </section>
     </div>
     <script src="main.js"></script>
 </body>

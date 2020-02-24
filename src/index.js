@@ -1,72 +1,76 @@
 import './style.css';
 
-const displayGif = () => {
-  fetch('https://api.giphy.com/v1/gifs/random?api_key=UATrdJQ14gXYSQb46ecz4AExyXbN27Qn&tag=&rating=G')
-    .then(response => response.json())
-    .then((response) => {
-      document.querySelector('img').src = response.data.images.original.url;
-    })
-    .catch((error) => {
-      document.querySelector('error').style.display = 'block';
-      document.querySelector('error').innerHTML = error;
+const btnCity = document.getElementById('btnCity');
+const txtCity = document.getElementById('txtCity');
+const imgGif = document.getElementById('imgGif');
+const weatherResult = document.getElementById('weatherResult');
+const btnCelsius = document.getElementById('btnCelsius');
+const btnFahren = document.getElementById('btnFahren');
+// const displayImage = () => {
+//     fetch(`https://api.giphy.com/v1/gifs/random?api_key=UATrdJQ14gXYSQb46ecz4AExyXbN27Qn&tag=&rating=G`)
+//     .then(response => response.json())
+//     .then((response) => {
+//       document.querySelector('img').src = response.data.images.original.url;
+//     })
+//     .catch((error) => {
+//       document.querySelector('error').style.display = 'block';
+//       document.querySelector('error').innerHTML = error;
+//     });
+// };
+
+// imgGif.innerHTML = displayImage();
+
+btnCity.onclick = function () {
+  const city = txtCity.value;
+  const KEY = '3200d53ac65b442eb5f439f5613ee06c';
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${KEY}`;
+  fetch(url).then(response => {
+    response.json().then(json => {
+      const data = json;
+      const output = getResponse(data);
+      weatherResult.innerHTML = output;
     });
+  });
 };
 
-const api = {
-  key: '80068fbfc8f92310ac9ea24006b4d8f7',
-  base: 'http://api.openweathermap.org/data/2.5/',
-};
+function kToF(kTemp) {
+  const fTemp = kTemp * (9 / 5) - 459.67;
+  return fTemp;
+}
 
-const inputValue = document.querySelector('.inputValue');
-inputValue.addEventListener('keypress', setQuery);
+function msToMPH(ms) {
+  return ms * 2.237;
+}
 
-function setQuery(e) {
-  if (e.keyCode === 13) {
-    getResults(inputValue.value);
+btnCelsius.addEventListener('click', () => {
+  const faren = Math.round(kToF(data.main.temp)) - 273.15;
+  const cels = (faren - 32) * 5 / 9;
+  tempDisplay = `${cels}°C`;
+});
+
+btnFahren.addEventListener('click', () => {
+  const faren = Math.round(kToF(data.main.temp)) - 273.15;
+  tempDisplay = `${faren}°F`;
+});
+
+
+const getResponse = (data) => {
+  let conditions = '';
+  if (data.weather.length > 1) {
+    for (let i = 0; i < data.weather.length; i++) {
+      conditions += data.weather[i].main;
+      if (i != (data.weather.length - 1)) {
+        conditions += ' and ';
+      }
+    }
+  } else {
+    conditions += data.weather[0].main;
   }
-}
-
-function getResults(query) {
-  fetch(`${api.base}weather?q=${query}&units=metric&APPID=${api.key}`)
-    .then(weather => weather.json()).then(displayResults);
-}
-
-function clearForm() {
-  setTimeout(() => {
-    inputValue.value = '';
-  }, 3000);
-}
-
-function displayResults(weather) {
-  const city = document.querySelector('.location .city');
-  city.innerText = `${weather.name}, ${weather.sys.country}`;
-
-  const now = new Date();
-  const date = document.querySelector('.location .date');
-  date.innerText = newDate(now);
-
-  const temp = document.querySelector('.current .temp');
-  temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
-
-  const weatherNew = document.querySelector('.current .weather');
-  weatherNew.innerText = weather.weather[0].main;
-
-  const hilow = document.querySelector('.hi-low');
-  hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
-  displayGif();
-  clearForm();
-  
-}
-
-
-function newDate(d) {
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-  const day = days[d.getDay()];
-  const date = d.getDate();
-  const month = months[d.getMonth()];
-  const year = d.getFullYear();
-
-  return `${day} ${date} ${month} ${year}`;
-}
+  const urlString = `<p><strong>Current weather condition for ${data.name}</strong></p>
+    <p><strong>Temperature:</strong> ${tempDisplay}<br /></p>
+    <p><strong>Humidity:</strong> ${data.main.humidity}%<br /></p>
+    <p><strong>Pressure:</strong> ${data.main.pressure}mb<br /></p>
+    <p><strong>Wind:</strong> ${data.wind.deg} degrees at ${Math.round(msToMPH(data.wind.speed))}</p>
+    <p><strong>Weather:</srong>${conditions}</p>`;
+  return (urlString);
+};
