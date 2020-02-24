@@ -33,7 +33,7 @@ btnCity.onclick = function () {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${KEY}`;
   fetch(url).then(response => {
     response.json().then(json => {
-       data = json;
+      data = json;
       getResponse(data);
     });
   });
@@ -44,16 +44,12 @@ function kToC(kTemp) {
   return cTemp;
 }
 
-function msToMPH(ms) {
-  return ms * 2.237;
-}
-
 const getResponse = (data) => {
   let conditions = '';
   if (data.weather.length > 1) {
     for (let i = 0; i < data.weather.length; i++) {
       conditions += data.weather[i].main;
-      if (i != (data.weather.length - 1)) {
+      if (i !== (data.weather.length - 1)) {
         conditions += ' and ';
       }
     }
@@ -75,6 +71,6 @@ btnCelsius.addEventListener('click', () => {
 
 btnFahren.addEventListener('click', () => {
   const cels = Math.round(kToC(data.main.temp));
-  const fahren = (cels * (9/5)) + 32;
+  const fahren = (cels * (9 / 5)) + 32;
   changeTemp.innerHTML = `${fahren}F`;
 });
