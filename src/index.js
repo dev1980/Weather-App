@@ -27,7 +27,7 @@ const displayImage = () => {
 imgGif.innerHTML = displayImage();
 
 let data;
-btnCity.onclick = function () {
+btnCity.onclick = () => {
   const city = txtCity.value;
   const KEY = '3200d53ac65b442eb5f439f5613ee06c';
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${KEY}`;
@@ -47,7 +47,7 @@ function kToC(kTemp) {
 const getResponse = (data) => {
   let conditions = '';
   if (data.weather.length > 1) {
-    for (let i = 0; i < data.weather.length; i++) {
+    for (let i = 0; i < data.weather.length; i += 1) {
       conditions += data.weather[i].main;
       if (i !== (data.weather.length - 1)) {
         conditions += ' and ';
