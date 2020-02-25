@@ -1,5 +1,6 @@
 import './style.css';
 import image from '../image/cloud.jpg';
+
 const btnCity = document.getElementById('btnCity');
 const txtCity = document.getElementById('txtCity');
 const btnCelsius = document.getElementById('btnCelsius');
@@ -21,10 +22,10 @@ const displayImage = (gifyimage) => {
     .catch((error) => {
       document.querySelector('error').style.display = 'block';
       document.querySelector('error').innerHTML = error;
-      
     });
 };
-imgGif.src =image;
+
+imgGif.src = image;
 
 let data;
 btnCity.onclick = () => {
@@ -36,8 +37,8 @@ btnCity.onclick = () => {
       data = json;
       getResponse(data);
 
-    const gifyimage = data.weather[0].main;
-     displayImage(gifyimage.toLowerCase());
+      const gifyimage = data.weather[0].main;
+      displayImage(gifyimage.toLowerCase());
     });
   });
 };
@@ -59,14 +60,12 @@ const getResponse = (data) => {
   } else {
     conditions += data.weather[0].main;
   }
-  
   location.innerHTML = `Current weather condition for ${data.name}`;
   changeTemp.innerHTML = `${Math.round(kToC(data.main.temp))} °C`;
   humidity.innerHTML = `${data.main.humidity}%`;
   pressure.innerHTML = `${data.main.pressure}mb`;
   wind.innerHTML = `${data.wind.deg} degrees at ${(data.wind.speed)}ms`;
   weather.innerHTML = `${conditions}`;
-  
 };
 
 btnCelsius.addEventListener('click', () => {
