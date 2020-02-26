@@ -23,7 +23,7 @@ JavaScript App
 
 ## Live Demo
 
-[Live Demo Link](https://raw.githack.com/dev1980/Weather-App/feature-api/dist/index.html)
+[Live Demo Link](https://raw.githack.com/dev1980/Weather-App/development/dist/index.html)
 
 ## Authors
 
