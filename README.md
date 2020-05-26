@@ -4,8 +4,8 @@ JavaScript App
 
 ## About Project
 
->This project is a simple page for a displaying weather of the input city, by fetching data from weather api.
- javascript, webpack and api.
+>This project is a simple page for displaying weather of the input city, by fetching data from weather API.
+ javascript, Webpack, and API.
 
 ## Link to Project
 
@@ -34,7 +34,7 @@ JavaScript App
 -   Linkedin: [linkedin](https://www.linkedin.com/in/dev1980/)
 ## 🤝 Contributing
 
-Contributions, issues and feature requests are welcome!
+Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page]().
 
